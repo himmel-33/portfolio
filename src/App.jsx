@@ -14,12 +14,12 @@ const projects = [
 		imageMaxWidth: 800, // 원하는 값(px)
 		detail: `
 			- 상태 관리: Redux와 Zustand를 비교하며 상품 목록, 장바구니, 사용자 상태를 관리합니다.
-			- 비동기 데이터: axios로 상품 데이터를 외부 API에서 받아오고, Redux-thunk로 비동기 로직을 처리합니다.
+			- 비동기 데이터: axios로 상품 데이터를 외부 API에서 받아오고, Redux-thunk로 비동기 로직을 처리
 			- 컴포넌트 구조: 상품 리스트, 상세, 장바구니, 주문 등 각 기능별로 컴포넌트 분리.
 			- 라우팅: react-router-dom으로 페이지 이동(메인, 상품상세, 장바구니 등).
 			- 스타일링: bootstrap 라이브러리로 반응형 UI 구현.
 			- 주요 라이브러리**: react, redux, zustand, react-router-dom, axios, bootstrap.
-			- 핵심 로직*: 
+			- 핵심 로직: 
 			- 상품 목록/상세/장바구니 및 state상태를 Redux와 Zustand로 각각 구현.
 			- 장바구니 담기/빼기, 수량 변경, 주문 처리 등 상태 변화가 즉시 반영.
 			- 상품 데이터는 useEffect로 최초 로딩 시 fetch.

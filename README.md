@@ -1,12 +1,6 @@
-# React + Vite
+## React + Vite로 만든 포트폴리오
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 구조 : 데이터와 컴포넌트 분리 후 App.jsx 에 포트폴리오 표현
 
-Currently, two official plugins are available:
+### 디자인: tailwindcss/vite 라이브러리로 커스텀 디자인 및 포트폴리오 카드를 각 3D 틸트 효과 적용
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

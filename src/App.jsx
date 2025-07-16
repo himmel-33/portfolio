@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import { Github } from 'lucide-react'; //?? 해결해야됨
+import { FaGithub } from 'react-icons/fa';
 import { Button } from './components/button';
 import { useParams } from 'react-router-dom';
 import { useRef } from 'react';
@@ -103,7 +103,7 @@ const ProjectDetail = () => {
 						variant="outline"
 						className="flex items-center gap-2"
 					>
-						<Github size={16} /> GitHub 보기
+						<FaGithub size={16} /> GitHub 보기
 					</Button>
 				</a>
 			)}

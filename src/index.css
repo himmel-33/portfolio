@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+  --color-realstone: #383c40;
+}

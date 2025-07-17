@@ -11,13 +11,28 @@ const Projects = () => {
 
   // 카드 마우스 무브 핸들러
   const handleMouseMove = (e, idx) => {
-    const card = cardRefs.current[idx];
+    const card = cardRefs.current[idx]; // 가져온 실제 DOM 요소
     const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
-    // 카드에 3D 틸트 효과
-    card.style.transform = `rotateY(${x / 20}deg) rotateX(${-y / 20}deg) scale(1.04)`;
-    card.style.boxShadow = `${-x / 8}px ${y / 8}px 32px 0 rgba(0,0,0,0.12)`;
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const rotateY = -1/6 * x + 20;
+    const rotateX = 1/10 * y - 20;
+
+    // 카드 3D 틸트
+    card.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.02)`;
+    card.style.boxShadow = `${-x / 8}px ${y / 8}px 32px 0 rgba(0,0,0,0.3)`;
+
+    // 빛 반사 효과 (글로시)
+    if (card.gloss) {
+      card.gloss.style.background = `
+        radial-gradient(
+          circle at ${x}px ${y}px,
+          rgba(255,255,255,0.35) 0px,
+          rgba(255,255,255,0.15) 40px,
+          rgba(255,255,255,0.0) 120px
+        )
+      `;
+    }
   };
 
   // 마우스가 카드에서 나가면 원상복구
@@ -25,24 +40,36 @@ const Projects = () => {
     const card = cardRefs.current[idx];
     card.style.transform = '';
     card.style.boxShadow = '';
+    if (card.gloss) {
+      card.gloss.style.background = '';
+    }
   };
 
   return (
     <div className="p-6 max-w-6xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6">📁 프로젝트</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center" style={{ perspective: '500px' }} >
         {projects.map((project, idx) => (
           <Link
-            key={project.id}
+        	key={project.id} //고유키
             to={`/projects/${project.id}`}
             ref={el => cardRefs.current[idx] = el}
-            className="bg-white p-4 shadow-md rounded-xl block hover:bg-blue-50 transition duration-300"
+            className="relative bg-black p-4 shadow-md rounded-xl block transition duration-300 w-64 h-96 overflow-hidden"
             onMouseMove={e => handleMouseMove(e, idx)}
             onMouseLeave={() => handleMouseLeave(idx)}
             style={{ willChange: 'transform' }}
           >
-            <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-            <p className="text-gray-700 mb-4">{project.description}</p>
+            <h3 className="text-white text-xl font-semibold mb-2">{project.title}</h3>
+			<img 
+			  src={project.image ? project.image : project.images[0].src}
+			  alt={project.title}
+			  className="w-full h-40 object-contain mb-2 rounded"
+			/>
+            <p className="text-white mb-4">{project.description}</p>
+            <div //오버레이 div 
+              className="pointer-events-none absolute top-0 left-0 w-full h-full"
+              ref={el => (cardRefs.current[idx] && (cardRefs.current[idx].gloss = el))}
+              style={{ zIndex: 10 }}
+            />
           </Link>
         ))}
       </div>
@@ -113,20 +140,25 @@ const ProjectDetail = () => {
 
 export default function App() {
 	return (
-		<Router>
-			<nav className="bg-white shadow p-4 px-4 md:px-8 rounded-2xl m-4 ml-40 mr-40">
-				<div className="flex justify-between items-center max-w-6xl mx-auto">
-					<Link to="/" className="text-xl font-bold text-blue-600">
-						Portfolio
-					</Link>
+		<div className="bg-realstone min-h-screen">
+			<Router>
+				<div className = "p-4">
+					<nav className="bg-white shadow rounded-2xl p-6 max-w-6xl mx-auto">
+						<div className="flex justify-between items-center max-w-6xl mx-auto">
+							<Link to="/" className="text-xl font-bold text-black">
+								프로젝트 포트폴리오
+							</Link>
+						</div>
+					</nav>
 				</div>
-			</nav>
-			<div className="px-4 md:px-8">
-				<Routes>
-					<Route path="/" element={<Projects />} />
-					<Route path="/projects/:id" element={<ProjectDetail />} />
-				</Routes>
-			</div>
-		</Router>
+				<div className="px-4 md:px-8">
+					<Routes>
+						<Route path="/" element={<Projects />} />
+						<Route path="/projects/:id" element={<ProjectDetail />} />
+					</Routes>
+				</div>
+			</Router>
+		</div>
+		
 	);
 }

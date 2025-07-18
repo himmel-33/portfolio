@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
+import { SiHomebridge } from 'react-icons/si';
 import { Button } from './components/button';
 import { useParams } from 'react-router-dom';
 import { useRef } from 'react';
@@ -142,14 +143,15 @@ export default function App() {
 	return (
 		<div className="bg-realstone min-h-screen">
 			<Router>
-				<div className = "p-4">
-					<nav className="bg-white shadow rounded-2xl p-6 max-w-6xl mx-auto">
-						<div className="flex justify-between items-center max-w-6xl mx-auto">
-							<Link to="/" className="text-xl font-bold text-black">
-								프로젝트 포트폴리오
-							</Link>
-						</div>
-					</nav>
+				<div className="p-8 flex justify-between items-center max-w-6xl mx-auto">
+					<div className="text-4xl font-sans text-white">
+						프로젝트 포트폴리오
+					</div>
+				</div>
+				<div className="flex justify-center mb-8">
+					<Link to="/">
+						<img src = "/goingHome.png" alt="홈버튼"/>
+					</Link>					
 				</div>
 				<div className="px-4 md:px-8">
 					<Routes>

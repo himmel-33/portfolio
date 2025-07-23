@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa';
-import { SiHomebridge } from 'react-icons/si';
 import { Button } from './components/button';
 import { useParams } from 'react-router-dom';
 import { useRef } from 'react';
@@ -51,22 +50,29 @@ const Projects = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center" style={{ perspective: '500px' }} >
         {projects.map((project, idx) => (
           <Link
-        	key={project.id} //고유키
+            key={project.id}
             to={`/projects/${project.id}`}
             ref={el => cardRefs.current[idx] = el}
-            className="relative bg-black p-4 shadow-md rounded-xl block transition duration-300 w-64 h-96 overflow-hidden"
+            className="relative p-4 shadow-md rounded-xl block transition duration-300 w-70 h-100 overflow-hidden"
             onMouseMove={e => handleMouseMove(e, idx)}
             onMouseLeave={() => handleMouseLeave(idx)}
-            style={{ willChange: 'transform' }}
+            style={{
+              willChange: 'transform',
+              backgroundImage: 'url(backgroundCard.png)', // 각 카드에 배경 적용
+              backgroundSize: 'cover',                  // 카드 전체에 꽉 차게
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+            }}
           >
-            <h3 className="text-white text-xl font-semibold mb-2">{project.title}</h3>
-			<img 
-			  src={project.image ? project.image : project.images[0].src}
-			  alt={project.title}
-			  className="w-full h-40 object-contain mb-2 rounded"
-			/>
-            <p className="text-white mb-4">{project.description}</p>
-            <div //오버레이 div 
+            {/* 카드 내용 */}
+			<h3 className="text-black text-3xl">{project.title}</h3>
+            <img
+              src={project.image ? project.image : project.images[0].src}
+              alt={project.title}
+              className="w-full h-40 object-contain mb-2 rounded"
+            />
+            <p className="text-black text-xl">{project.description}</p>
+            <div
               className="pointer-events-none absolute top-0 left-0 w-full h-full"
               ref={el => (cardRefs.current[idx] && (cardRefs.current[idx].gloss = el))}
               style={{ zIndex: 10 }}
@@ -86,7 +92,7 @@ const ProjectDetail = () => {
 
 	return (
 		<div className="p-6 max-w-3xl mx-auto">
-			<h2 className="text-2xl font-bold mb-4">{project.title}</h2>
+			<h2 className="text-4xl text-white mb-4">{project.title}</h2>
 			{/* 여러 이미지 지원 */}
 			{project.images ? (
 				<div className="flex gap-4 mb-4 flex-wrap">
@@ -115,10 +121,10 @@ const ProjectDetail = () => {
 						height: 'auto',
 						margin: '0 auto',
 					}}
-					className="mb-4 rounded shadow block"
+					className="mb-2 rounded shadow block"
 				/>
 			) : null}
-			<div className="mb-4 mt-10" style={{ whiteSpace: 'pre-line' }}>
+			<div className="mb-4 text-xl text-white" style={{ whiteSpace: 'pre-line' }}>
 				{project.detail}
 			</div>
 			{project.github && (
@@ -144,13 +150,18 @@ export default function App() {
 		<div className="bg-realstone min-h-screen">
 			<Router>
 				<div className="p-8 flex justify-between items-center max-w-6xl mx-auto">
-					<div className="text-4xl font-sans text-white">
-						프로젝트 포트폴리오
+					<div className="text-5xl text-white"
+					style={{
+							fontFamily: "'pokemon dppt','press start 2p'",
+							textShadow: '2px 2px 0 #222, 4px 4px 0 #444',
+    						letterSpacing: '2px',
+						}}>
+						이진구가 잡은 프로젝트 도감
 					</div>
 				</div>
 				<div className="flex justify-center mb-8">
 					<Link to="/">
-						<img src = "/goingHome.png" alt="홈버튼"/>
+						<span className="retro-wave">▶ 태초마을로</span>
 					</Link>					
 				</div>
 				<div className="px-4 md:px-8">

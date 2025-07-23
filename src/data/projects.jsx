@@ -24,7 +24,7 @@ export const projects = [
     id: 'chat',
     title: '💬 채팅 서버 프로젝트',
     description:
-      'React + Express → React + Go 마이그레이션한 WebSocket 기반 실시간 채팅 서버 구축. express는 socket.io, Go는 gorilla/websocket 라이브러리를 활용한 실시간 통신 구현',
+      'React + Express 로 구현한 WebSocket 양방향 통신 기반 실시간 채팅 서버 구축(express는 go로 마이그레이션). socket.io, gorilla/websocket, tailwind CSS 사용',
     github: 'https://github.com/himmel-33/chat',
     images: [
       { src: '/chatting.png', maxWidth: 800, alt: '채팅 메시지 예시' },
@@ -46,7 +46,7 @@ export const projects = [
   },
   {
     id: 'law',
-    title: '📚 한눈에 보는 법률 정보 앱 (진행 중)',
+    title: '📚 법을 한 앱에 다 담은 프로젝트(진행 중)',
     description:
       'React Native 기반 법안/법령 통합 열람 앱 서비스. 하이브리드 웹앱으로 제작. API 요청 json 데이터를 정규화 작업  및 AI를 활용한 데이터 요약 기능',
     github: 'https://github.com/himmel-33/L-project',

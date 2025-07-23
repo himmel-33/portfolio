@@ -3,3 +3,27 @@
 @theme {
   --color-realstone: #383c40;
 }
+
+@font-face {
+  font-family: "pokemon dppt";
+  font-weight: normal;
+  src: url("./font/pokemon-dppt.otf") format("truetype");
+}
+
+body{
+  font-family: 'pokemon dppt','Press Start 2P';
+}
+.retro-wave {
+  display: inline-block;
+  font-family: 'pokemon dppt','Press Start 2P';
+  font-size: 2rem;
+  color: #fff;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #222, 4px 4px 0 #444;
+  animation: wave 1s infinite linear alternate;
+}
+
+@keyframes wave {
+  0%   { transform: translateY(0px);}
+  100% { transform: translateY(2px);}
+}
